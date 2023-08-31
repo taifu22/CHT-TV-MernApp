@@ -29,7 +29,7 @@ function LightBoxProductsDetails(props) {
     
     return (
         <div className='div-lightbox'>
-            <img src={'http://localhost:4000/uploads/imagesUsersProfil/' + dataImage}></img>
+            <img src={'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + dataImage}></img>
             {props.data.length > 1 ? 
             <div className='d-flex justify-content-between align-items-end'>
                 <i role={"button"} onClick={previousImage} className="fa fa-solid fa-angle-left rigthImage"></i> 

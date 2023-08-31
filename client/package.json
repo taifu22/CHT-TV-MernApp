@@ -15,7 +15,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.5",
     "react-scripts": "^5.0.1",
-    "react-simple-star-rating": "^5.1.7",
+    "react-simple-star-rating": "^5.1.7", 
     "react-stripe-elements": "^6.1.2",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
@@ -50,7 +50,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3080",
+  "proxy": "http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com",
   "secure": false,
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
