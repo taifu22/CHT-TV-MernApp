@@ -92,7 +92,7 @@ function ListProducts(props) {
         //on verifie si la key image existe dans le body des info de l'user (voir bdd)
         if (img.pictures !== undefined){
             //si existe on affiche l'image stocké dans le dossier uploads du back (geré par multer)
-            image1 = 'http://localhost:4000/uploads/imagesUsersProfil/' + img.pictures[0].filename;    
+            image1 = 'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + img.pictures[0].filename;    
         } else {
             //sinon si l'user vient de s'enregister on mets une image profil par défaut
             image1 = "./images/avatars/avatar3.jpg"

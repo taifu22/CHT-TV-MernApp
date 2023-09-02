@@ -18,7 +18,7 @@ function ImageProfil(props) {
         //on verifie si la key image existe dans le body des info de l'user (voir bdd)
         if (dataImage['image'] !== undefined) {
             //si existe on affiche l'image stocké dans le dossier uploads du back (geré par multer)
-            image1 = 'http://localhost:4000/uploads/imagesUsersProfil/' + dataImage.image.img.data;    
+            image1 = 'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + dataImage.image.img.data;    
         } else {
             //sinon si l'user vient de s'enregister on mets une image profil par défaut
             image1 = "./images/avatars/avatar3.jpg"

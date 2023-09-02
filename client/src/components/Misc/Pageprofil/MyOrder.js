@@ -74,7 +74,7 @@ function MyOrder() {
                     //on verifie si la key image existe dans le body des info de l'user (voir bdd)
                     if (item1.picture !== undefined) {
                         //si existe on affiche l'image stocké dans le dossier uploads du back (geré par multer)
-                        image1 = 'http://localhost:4000/uploads/imagesUsersProfil/' + item1.picture.data;    
+                        image1 = 'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + item1.picture.data;    
                     } else {
                         //sinon si l'user vient de s'enregister on mets une image profil par défaut
                         image1 = "./images/avatars/avatar3.jpg"

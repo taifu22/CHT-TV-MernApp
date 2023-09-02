@@ -27,7 +27,7 @@ function Favoris(props) {
         //on verifie si l'image existe
         if (picture !== undefined){
             //si existe on affiche l'image stocké dans le dossier uploads du back (geré par multer)
-            image1 = 'http://localhost:4000/uploads/imagesUsersProfil/' + picture;    
+            image1 = 'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + picture;    
         } 
         else {
             //sinon si l'user vient de s'enregister on mets une image profil par défaut

@@ -55,7 +55,7 @@ const Nav = () => {
     } else {
         //recovery from store redux the profil'image in a variable 
         if (state.user.users.body['image'] !== undefined) {
-          image = 'http://localhost:4000/uploads/imagesUsersProfil/' + state.user.users.body.image.img.data;
+          image = 'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + state.user.users.body.image.img.data;
         } else {
           //si y a pas la key image dans le body on affiche une image profil user par défaut
           image = './images/avatars/avatar3.jpg'

@@ -28,7 +28,7 @@ exports.deleteProduct = async (req, res) => {
           product.pictures.map(item => {
             if (item['data'] !== undefined) {
               const filename = item.data  
-              const directoryPath = "C:/react projets/project-cht-TV/backend/uploads/imagesUsersProfil/";
+              const directoryPath = "/home/ubuntu/CHT-TV-MernApp/uploads/imagesUsersProfil/";
               fs.unlink(directoryPath + filename, (error) => {
                   if (error) {
                       console.log('Found error see here: ' + error);
@@ -146,7 +146,7 @@ exports.updateProduct = async (req, res) => {
           product.pictures.map(item => {
             if (item['filename'] !== undefined) {
               const filename = item.filename  
-              const directoryPath = "C:/react projets/project-cht-TV/backend/uploads/imagesUsersProfil/";
+              const directoryPath = "/home/ubuntu/CHT-TV-MernApp/uploads/imagesUsersProfil/";
               fs.unlink(directoryPath + filename, (error) => {
                   if (error) {
                       console.log('Found error see here: ' + error);
