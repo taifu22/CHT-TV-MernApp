@@ -69,7 +69,7 @@ const Gallery = () => {
 					</div>
 					{dropDown ? <div className='div-list-categorys'>
 					    { categorys.map(item => {
-							return <div className='d-flex align-items-center' role={'button'} onClick={()=> {setCategory(item.name);setDropDown(false)}}><span className='p-category' >{item.name}</span><img src={'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + item.image} /></div>
+							return <div className='d-flex align-items-center' role={'button'} onClick={()=> {setCategory(item.name);setDropDown(false)}}><span className='p-category' >{item.name}</span><img src={'http://ec2-13-51-198-6.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + item.image} /></div>
 						}) }
 					</div> : ""}
 				</div>

@@ -85,7 +85,7 @@ function ListCategorys(props) {
                                 <div className='d-flex justify-content-between p-3'>
                                     <div className='d-flex'>
                                         <p>{item.name}</p>
-                                        <img className='ml-3' style={{height:'20px'}} src={'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + item.image} ></img>
+                                        <img className='ml-3' style={{height:'20px'}} src={'http://ec2-13-51-198-6.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + item.image} ></img>
                                     </div>
                                     <div className='d-flex flex-column'>
                                         {item.name === 'All products' ? '' : <i onClick={()=>deleteCategory(item._id)} role='button' title='supprimer la catégorie' className="text-danger fa-solid fa-trash"></i>}

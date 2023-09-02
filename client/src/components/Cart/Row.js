@@ -83,7 +83,7 @@ const Row = ({ id, name, price, quantity, category, picture, priceReduction, per
         //on verifie si la key image existe dans le body des info de l'user (voir bdd)
         if (picture.data !== undefined){
             //si existe on affiche l'image stocké dans le dossier uploads du back (geré par multer)
-            image1 = 'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + picture.data;    
+            image1 = 'http://ec2-13-51-198-6.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + picture.data;    
         } else {
             //sinon si l'user vient de s'enregister on mets une image profil par défaut
             image1 = "./images/avatars/avatar3.jpg"

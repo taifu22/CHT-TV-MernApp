@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const Axios = axios.create({
-    baseURL: 'http://ec2-51-20-8-194.eu-north-1.compute.amazonaws.com/'
+    baseURL: 'http://ec2-13-51-198-6.eu-north-1.compute.amazonaws.com/'
 })
 
 export default Axios
