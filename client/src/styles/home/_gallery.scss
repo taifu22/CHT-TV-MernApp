@@ -49,19 +49,19 @@
                 cursor: pointer;
                 position: relative;
                 border: 1px solid rgb(221, 212, 212);
-                display: flex;
-                flex-wrap: nowrap;
                 margin: 10px;
+                clear: both;
                 .p-elipsis {
                     text-overflow: ellipsis;
                     overflow: hidden;
                     white-space: nowrap; 
-                }
+                    max-width: 100%;
+                }            
                 img {
-                    height: 150px;
+                    max-height: 150px;
                 }
                 .div-buttons {
-                   position: absolute;
+                   position: absolute; 
                    bottom: 10px;
                    right: 10px;
                 }
@@ -87,7 +87,7 @@
             .inside-gallery {
                 .product-menu-list {
                     img {
-                        height: 70px;
+                        max-height: 70px;
                     }
                 }
             }
