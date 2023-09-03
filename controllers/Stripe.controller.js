@@ -3,7 +3,7 @@ dotenv.config({ path: './config.env' });
 const stripe = require('stripe')(process.env.SECRET_KEY_STRIPE_TEST);
 
 exports.getStripe = async (req, res) => {
-  const YOUR_DOMAIN = 'http://localhost:3000';
+  const YOUR_DOMAIN = 'http://ec2-13-51-198-6.eu-north-1.compute.amazonaws.com/';
 
   try {
     //je déclare la variable, qui stockera un coupon en format json si existe
