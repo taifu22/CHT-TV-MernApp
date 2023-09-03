@@ -54,6 +54,7 @@ const Product = ({ id, name, price, category, description, opinions, purchases, 
         dispatch(addNewFavorisData(newData))
     }
 
+    //on supprime un produit des favoris, donc coté redux et coté bdd
     function deleteFavorite(id) {
         serviceUser.deleteFavorisUser(token.accessToken, id); 
         dispatch(deleteFavorisData(id));
@@ -113,7 +114,7 @@ const Product = ({ id, name, price, category, description, opinions, purchases, 
         //on verifie si la key image existe dans le body des info de l'user (voir bdd)
         if (pictures !== undefined){
             //si existe on affiche l'image stocké dans le dossier uploads du back (geré par multer)
-            image1 = 'http://ec2-13-51-198-6.eu-north-1.compute.amazonaws.com/uploads/imagesUsersProfil/' + pictures[0].filename;     
+            image1 = 'http://localhost:4000/uploads/imagesUsersProfil/' + pictures[0].filename;     
         } else {
             //sinon si l'user vient de s'enregister on mets une image profil par défaut
             image1 = "./images/avatars/avatar3.jpg"
@@ -163,27 +164,33 @@ const Product = ({ id, name, price, category, description, opinions, purchases, 
         </div>
     </div> : <div className="col-12 p-0" onClick={toggleInfo}> 
         <div className="product-menu-list">
-            <img className='m-3' src={imageData()} /> 
-            <figcaption className="m-3 w-100">
-                <div className='row'>
-                    <p className="p-elipsis text-primary col-10">{ name }</p>
+            <div className='row'>
+                <div className={screenWidth > 1000 ? 'col-3' : 'col-4'}> {/* Colonne pour l'image */}
+                    <img className='m-3 img-fluid' src={imageData()} alt="Image du produit" />
                 </div>
-                <div className='container-fluid pl-0'>
-                    <div className='row w-100'>
-                        <p className="p-elipsis col-7">{ description }</p>
-                    </div>
+                <div className={screenWidth > 1000 ? 'col-9' : 'col-8'}> {/* Colonne pour les infos du produit */}
+                    <figcaption className="m-3 w-100">
+                        <div className='row w-100'>
+                            <p className="p-elipsis text-primary col-10">{ name }</p>
+                        </div>
+                        <div className='container-fluid pl-0'>
+                            <div className='row w-100'>
+                                <p className="p-elipsis col-12">{ description }</p>
+                            </div>
+                        </div>
+                        {(percentageReduction && priceReduction !== null) ? 
+                                                    <div className='mt-3 mb-3 d-flex align-items-center'>
+                                                        <p className='text-danger price h5'><b>{priceReduction}€ </b></p>
+                                                        <span className="badge badge-danger ml-3 mb-2"><em>Reduction</em> {percentageReduction}</span>
+                                                    </div> : <div className="p-price price h5 mt-2">{ price } €</div>}
+                        <ul className="rating-stars mb-1 ">
+                            {Viewstars(star, MeanStarsCalculate())}
+                        </ul> 
+                        {screenWidth > 576 ? <span className='ml-2'>{MeanStarsCalculate() ? MeanStarsCalculate() : "aucun avis"} </span> : ""}
+                        <p>{(purchases.length >= 1 && NumberPurchases() > 1 ) ? NumberPurchases() + ' vendus' : (purchases.length == 1 && NumberPurchases() == 1) ? purchases.length+ ' vendu' : 'pas vendu'} </p>       
+                    </figcaption>
                 </div>
-                {(percentageReduction && priceReduction !== null) ? 
-                                            <div className='mt-3 mb-3 d-flex align-items-center'>
-                                                <p className='text-danger price h5'><b>{priceReduction}€ </b></p>
-                                                <span className="badge badge-danger ml-3 mb-2"><em>Reduction</em> {percentageReduction}</span>
-                                            </div> : <div className="p-price price h5 mt-2">{ price } €</div>}
-                <ul className="rating-stars mb-1 ">
-                    {Viewstars(star, MeanStarsCalculate())}
-                </ul> 
-                {screenWidth > 576 ? <span className='ml-2'>{MeanStarsCalculate() ? MeanStarsCalculate() : "aucun avis"} </span> : ""}
-                <p>{(purchases.length >= 1 && NumberPurchases() > 1 ) ? NumberPurchases() + ' vendus' : (purchases.length == 1 && NumberPurchases() == 1) ? purchases.length+ ' vendu' : 'pas vendu'} </p>       
-            </figcaption>
+            </div>
             <div className="btn-group btn-group-toggle float-right div-buttons" data-toggle="buttons">
                 <label className= {screenWidth > 576 ? "btn btn-light active" : "btn btn-light active btn-sm"}>
                     <input 
