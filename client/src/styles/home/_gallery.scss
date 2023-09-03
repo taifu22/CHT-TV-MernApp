@@ -54,7 +54,7 @@
                 .p-elipsis {
                     text-overflow: ellipsis;
                     overflow: hidden;
-                    white-space: nowrap; 
+                    white-space: nowrap;  
                     max-width: 100%;
                 }            
                 img {
@@ -90,6 +90,19 @@
                         max-height: 70px;
                     }
                 }
+            }
+        }
+    }   
+}
+
+//on donne du margin quand on est à moins de 600px, pour bien afficher la barre de recherche
+@media screen and (max-width: 600px) {
+    .section-gallery {
+        .input-responsive-max600px {
+            margin-left: 100px !important;
+            margin-bottom: 15px !important;
+            .fa-search {
+                color: #3B71CA;
             }
         }
     }   

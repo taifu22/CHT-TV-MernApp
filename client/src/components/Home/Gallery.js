@@ -5,6 +5,8 @@ import Pagination from './Pagination';
 import { fetchProducts, fetchProductsWithoutPagination, fetchproductsWithCategory } from '../../lib/service/service'
 import { useLocation } from 'react-router-dom';
 import { setPageIndex } from '../../lib/state/features/products.slice';
+import ComponentSearchProduct from '../Layout/ComponentSearchProduct';
+import useWindowSize from '../../lib/hooks/useScreenSize';
 
 /*ici on créé 3 composants, le premier c'est pour afficher notre gallerie, si on a bien récuperé la data avec les produits
 le deuxieme c'est pour afficher un message, si le tableau des datas est vide donc pas de produits a afficher dans la gallerie
@@ -58,11 +60,13 @@ const Gallery = () => {
 	//state pour afficher/masquer la dropdown du choix des categories
 	const [dropDown, setDropDown] = useState(false);
 
+	const screenWidth = useWindowSize().width;
+
 	return (
 	<>
-		<section className="mt-3 mb-5 section-gallery d-flex flex-column">
+		<section className="mt-3 mb-5 section-gallery ">
 		<h3 className="title-section text-center mb-3">Nos produits</h3>
-			<header className="section-heading mb-5 d-flex justify-content-between">
+			<header className="section-heading mb-2 d-flex justify-content-between">
 				<div className='div-categorys'>
 				    <div className='div-category bg-primary' onClick={()=> setDropDown(!dropDown)}>
 						<p className='m-0'>CATEGORIE : {category}</p> {dropDown ? <i className="ml-2 fa-solid fa-caret-up"></i> : <i className="ml-2 fa-solid fa-caret-down"></i>}
@@ -79,6 +83,7 @@ const Gallery = () => {
 					<i class="fa-solid fa-list fa-2x" style={{color: toggle ? 'black' : '#3B71CA'}} onClick={()=> setToggle(!toggle)}></i>
 				</div>
 			</header>
+			{screenWidth < 600 ? <ComponentSearchProduct/> : ""}
 			<div>
 				<div className="row inside-gallery"> 
 					<Loading isLoading={isLoading}/> 

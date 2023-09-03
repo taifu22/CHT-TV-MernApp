@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { returnProductsArrays } from "../../lib/service/service";
-import { getProductsSuccess } from "../../lib/state/features/products.slice";
 import { deleteDataUser } from '../../lib/state/features/user.slice';
-import { getProducts } from "../../lib/service/service";
 import useWindowSize from '../../lib/hooks/useScreenSize';
 import { setLogOutDeleteCodesPromo } from "../../lib/state/features/PromosCode.slice";
 import { checkOut } from "../../lib/state/features/cart.slice";
+import ComponentSearchProduct from "./ComponentSearchProduct";
 
 const Nav = () => {
 
-  const [valueInput, setValueInput] = useState("");
   const {items} = useSelector((state) => ({...state.cart}));
-  const products = useSelector(state => ({...state.products}))
   const user = useSelector(state => state.user.users)
 	const quantity = items.length > 0 ? items.length : '';
+
   //if we have a new message received unread, then we will display in new red in the envelope 
   const newMessages = useSelector(state => {
     if (state.user.users !== null && state.user.users.body.newMessage === true) {
@@ -25,28 +22,7 @@ const Nav = () => {
     } 
   })  
 
-  //variable for store the product sorted with reacrh input
-  const productsSorted = []
   let image; 
-
-  //in this useEffect we sort the store redux of produits by ration of input's value
-  useEffect(() => { 
-    products.items.map(item => {
-      item.map(item1 => {
-        if (item1.name.toLowerCase().includes(valueInput)) {
-          productsSorted.push(item1)
-        }
-      })
-    })
-    if (valueInput.length === 0 && valueInput === "") {
-      getProducts()
-      .then((response) => returnProductsArrays(response.data.data))
-      .then((productData) => dispatch(getProductsSuccess(productData)))
-    } else {
-      const productsArrayPagination = returnProductsArrays(productsSorted);
-      dispatch(getProductsSuccess(productsArrayPagination));
-    }
-  },[valueInput])
 
   //Data recovery from the redux store (user information and token)
   const data = useSelector((state) => { 
@@ -76,16 +52,6 @@ const Nav = () => {
       naviagte('/'); 
   }
 
-  //function to sorted gallery products with the value of input
-  function onChangeInput(e) {
-    setValueInput(e.target.value.toLowerCase())
-  }
-  function onClickButton(params) {
-    /*si on click sur le button de research car on est pas dans la page home, on sera redirectionné vers /Home donc la racine du projet
-    et on aura un state dans le location, du coup on va afficher directement nos produits rechercé (voir /Home)*/
-    return naviagte('/', {state:{state: true}}); 
-  }
-
   const screenWidth = useWindowSize().width;
 
   const links = [
@@ -110,14 +76,7 @@ const Nav = () => {
             );
           })}
         </ul>
-        { screenWidth > 600 ? <div className="input-group-prepend input-responsive mr-3">
-          <div className="form-outline">
-            <input onChange={e => onChangeInput(e)} value={valueInput} id="search-focus" type="search" placeholder="search" className="form-control" />
-          </div>
-          <button onClick={()=>onClickButton()} type="button" className="btn text-light">
-            <i className="fas fa-search"></i>
-          </button>
-        </div> : ""}
+        {screenWidth > 600 ? <ComponentSearchProduct/> : ""}
           {user !== null ? <div className={screenWidth < 600 ? "navlink-messages nav-link d-flex text-light" : "nav-link-messages-xl"}><Link to={user.body.role === 'admin' ? '/dashboardAdmin/messaging' : 'pageprofil/messaging'}><i className="text-light fas fa-xl fa-solid fa-envelope"></i>{screenWidth < 600 ?<p className="text-light">Messages</p> : ""}</Link><span style={{marginLeft:'-15px' , marginTop:'-10px' }} className="badge badge-danger mr-2 mb-3">{newMessages}</span></div> : ""}
         <div className="panier-div d-flex flex-column justify-content-center align-items-center">
           {<div className="d-flex"><Link to={'/cart'} className="nav-link"><i className="text-light fas fa-xl fa-shopping-cart"></i></Link><span style={{marginLeft:'-10px'}} className="badge badge-danger mr-2 mb-4">{quantity}</span></div>}
